@@ -22,21 +22,25 @@ void swap(listint_t *node1, listint_t *node2, listint_t *list)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *my_list = *list, *front, *back, *temp;
+	listint_t *my_list, *front, *back, *temp;
 
-	front = my_list;
-	while (front)
+	if (list)
 	{
-		back = front;
-		while (back)
+		my_list = *list;
+		front = my_list;
+		while (front)
 		{
-			temp = back->prev;
-			if (!temp)
-				break;
-			if (back->n < temp->n)
-				swap(back, temp, my_list);
-			back = back->prev;
+			back = front;
+			while (back)
+			{
+				temp = back->prev;
+				if (!temp)
+					break;
+				if (back->n < temp->n)
+					swap(back, temp, my_list);
+				back = back->prev;
+			}
+			front = front->next;
 		}
-		front = front->next;
 	}
 }
